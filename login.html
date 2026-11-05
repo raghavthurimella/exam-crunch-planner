@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Exam Crunch Planner</title>
+</head>
+<body>
+  <h1>Exam Crunch Planner</h1>
+
+  <form id="auth-form">
+    <input id="name" placeholder="Name (sign up only)">
+    <input id="email" type="email" placeholder="Email" required>
+    <input id="password" type="password" placeholder="Password" required>
+    <button type="submit" id="submit-btn">Log in</button>
+    <button type="button" id="toggle">Need an account? Sign up</button>
+    <button type="button" id="google-btn">Continue with Google</button>
+    <p id="error" style="color:crimson"></p>
+  </form>
+
+  <script type="module">
+    import { signUp, logIn, googleSignIn, redirectIfLoggedIn, friendlyError } from "./js/auth.js";
+
+    redirectIfLoggedIn();
+    let isSignup = false;
+    const $ = (id) => document.getElementById(id);
+
+    $("name").style.display = "none";
+
+    $("toggle").onclick = () => {
+      isSignup = !isSignup;
+      $("name").style.display = isSignup ? "block" : "none";
+      $("submit-btn").textContent = isSignup ? "Sign up" : "Log in";
+      $("toggle").textContent = isSignup ? "Have an account? Log in" : "Need an account? Sign up";
+    };
+
+    $("auth-form").onsubmit = async (e) => {
+      e.preventDefault();
+      $("error").textContent = "";
+      try {
+        if (isSignup) await signUp($("name").value, $("email").value, $("password").value);
+        else await logIn($("email").value, $("password").value);
+        location.href = "dashboard.html";
+      } catch (err) {
+        $("error").textContent = friendlyError(err);
+      }
+    };
+
+    $("google-btn").onclick = async () => {
+      try {
+        await googleSignIn();
+        location.href = "dashboard.html";
+      } catch (err) {
+        $("error").textContent = friendlyError(err);
+      }
+    };
+  </script>
+</body>
+</html>
