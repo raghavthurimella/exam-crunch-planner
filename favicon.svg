@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Exam Crunch Planner">
+  <rect width="512" height="512" rx="112" fill="#243B53"/>
+  <path d="M256 174v214" fill="none" stroke="#F5C451" stroke-width="18" stroke-linecap="round"/>
+  <path d="M256 184c-44-38-91-48-140-26v184c49-22 96-12 140 26V184Z" fill="#ffffff"/>
+  <path d="M256 184c44-38 91-48 140-26v184c-49-22-96-12-140 26V184Z" fill="#ffffff"/>
+  <path d="M145 214c34-12 69-5 104 19M145 264c34-12 69-5 104 19M367 214c-34-12-69-5-104 19M367 264c-34-12-69-5-104 19" fill="none" stroke="#D9E2EC" stroke-width="12" stroke-linecap="round"/>
+</svg>
