@@ -4,10 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard - Exam Crunch Planner</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/theme.js"></script>
 </head>
 <body>
-  <h1 id="welcome">Loading…</h1>
-  <button id="logout">Log out</button>
+  <div class="page">
+    <div class="topbar">
+      <h1 class="brand">Exam Crunch Planner</h1>
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme">🌙</button>
+    </div>
+
+    <div class="card">
+      <h1 id="welcome">Loading…</h1>
+      <button id="logout" class="btn btn-secondary">Log out</button>
+    </div>
+  </div>
 
   <script type="module">
     import { requireAuth, logOut } from "./js/auth.js";
