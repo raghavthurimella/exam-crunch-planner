@@ -2,70 +2,226 @@
 <html lang="en">
 <head>
     <meta name="description" content="Exam Crunch Planner helps students organize and power through exam prep.">
-  <meta name="theme-color" content="#5b8a9a">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  
+  <meta name="theme-color" content="#6c4fe0">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=2">
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login - Exam Crunch Planner</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Segoe+UI&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="css/style.css">
   <script src="js/theme.js"></script>
 </head>
-<body>
+<body class="login-page">
   <div class="page">
     <div class="topbar">
-      <h1 class="brand">Exam Crunch Planner</h1>
+      <header class="brand">
+        <div class="brand-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" role="img">
+            <path d="M12 18V5" />
+            <path d="M15 13a4.17 4.17 0 0 1-3-4 4.17 4.17 0 0 1-3 4" />
+            <path d="M17.598 6.5A3 3 0 1 0 12 5a3 3 0 1 0-5.598 1.5" />
+            <path d="M17.997 5.125a4 4 0 0 1 2.526 5.77" />
+            <path d="M18 18a4 4 0 0 0 2-7.464" />
+            <path d="M19.967 17.483A4 4 0 1 1 12 18a4 4 0 1 1-7.967-.517" />
+            <path d="M6 18a4 4 0 0 0-2-7.464" />
+            <path d="M6.003 5.125a4 4 0 0 1 2.526 5.77" />
+          </svg>
+        </div>
+        <div class="brand-name">
+          <span>Exam Crunch</span>
+          <strong>Planner</strong>
+        </div>
+      </header>
       <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme">🌙</button>
     </div>
 
-    <div class="card">
-      <h1>Welcome back</h1>
-      <form id="auth-form">
-        <input id="name" class="field" placeholder="Name (sign up only)" style="display:none;">
-        <input id="email" class="field" type="email" placeholder="Email" required>
-        <input id="password" class="field" type="password" placeholder="Password" required>
-        <button type="submit" id="submit-btn" class="btn">Log in</button>
-        <button type="button" id="toggle" class="btn btn-secondary">Need an account? Sign up</button>
-        <button type="button" id="google-btn" class="btn btn-secondary">Continue with Google</button>
-        <p id="error" class="error-text"></p>
-      </form>
-    </div>
+    <main class="login-layout">
+
+      <section class="login-card" aria-labelledby="login-heading">
+        <h2 id="login-heading">Welcome back!</h2>
+        <p class="subtitle">Let's get you back on track ✨</p>
+
+        <div id="formErrorBanner" class="lp-form-error" role="alert"></div>
+
+        <form id="auth-form" novalidate>
+          <div class="lp-field" id="nameField" style="display:none;">
+            <label for="name">Name</label>
+            <div class="lp-field__wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-6 8-6s8 2 8 6"/>
+              </svg>
+              <input id="name" type="text" placeholder="Your name" autocomplete="name">
+            </div>
+          </div>
+
+          <div class="lp-field" id="emailField">
+            <label for="email">Email</label>
+            <div class="lp-field__wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/>
+              </svg>
+              <input id="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+            </div>
+            <span class="lp-field__error">Enter a valid email address.</span>
+          </div>
+
+          <div class="lp-field" id="passwordField">
+            <label for="password">Password</label>
+            <div class="lp-field__wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>
+              </svg>
+              <input id="password" type="password" placeholder="••••••••" autocomplete="current-password" required minlength="6">
+              <button type="button" class="lp-field__toggle-visibility" id="togglePassword" aria-label="Show password" aria-pressed="false">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/>
+                </svg>
+              </button>
+            </div>
+            <span class="lp-field__error">Password must be at least 6 characters.</span>
+          </div>
+
+          <button type="submit" id="submit-btn" class="btn-lp-primary">
+            <span id="submitLabel">Log in</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14M13 5l7 7-7 7"/>
+            </svg>
+          </button>
+        </form>
+
+        <div class="lp-divider">or</div>
+
+        <button type="button" id="google-btn" class="btn-lp-google">
+          <svg width="18" height="18" viewBox="0 0 18 18">
+            <path fill="#4285F4" d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84a4.14 4.14 0 0 1-1.8 2.72v2.26h2.9c1.7-1.57 2.7-3.88 2.7-6.62z"/>
+            <path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.9-2.26c-.81.54-1.84.86-3.06.86-2.35 0-4.34-1.59-5.05-3.72H.95v2.33A9 9 0 0 0 9 18z"/>
+            <path fill="#FBBC05" d="M3.95 10.7a5.4 5.4 0 0 1 0-3.4V4.97H.95a9 9 0 0 0 0 8.06l3-2.33z"/>
+            <path fill="#EA4335" d="M9 3.58c1.32 0 2.5.45 3.44 1.35l2.58-2.58C13.46.9 11.43 0 9 0A9 9 0 0 0 .95 4.97l3 2.33C4.66 5.17 6.65 3.58 9 3.58z"/>
+          </svg>
+          <span id="googleLabel">Continue with Google</span>
+        </button>
+
+        <button type="button" id="toggle" class="lp-switch-mode">Need an account? Sign up</button>
+      </section>
+    </main>
   </div>
 
   <script type="module">
     import { signUp, logIn, googleSignIn, redirectIfLoggedIn, friendlyError } from "./js/auth.js";
 
     redirectIfLoggedIn();
-    let isSignup = false;
-    const $ = (id) => document.getElementById(id);
 
+    const $ = (id) => document.getElementById(id);
+    let isSignup = false;
+
+    function setFieldError(fieldId, hasError) {
+      $(fieldId).classList.toggle("has-error", hasError);
+    }
+
+    function showFormError(message) {
+      const banner = $("formErrorBanner");
+      banner.textContent = message;
+      banner.classList.add("visible");
+    }
+
+    function clearFormError() {
+      const banner = $("formErrorBanner");
+      banner.textContent = "";
+      banner.classList.remove("visible");
+    }
+
+    function isValidEmail(value) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
+    }
+
+    // ---- Toggle between Login and Sign up (same page, same behavior as before) ----
     $("toggle").onclick = () => {
       isSignup = !isSignup;
-      $("name").style.display = isSignup ? "block" : "none";
-      $("submit-btn").textContent = isSignup ? "Sign up" : "Log in";
+      $("nameField").style.display = isSignup ? "block" : "none";
+      $("submitLabel").textContent = isSignup ? "Sign up" : "Log in";
       $("toggle").textContent = isSignup ? "Have an account? Log in" : "Need an account? Sign up";
+      clearFormError();
+      setFieldError("emailField", false);
+      setFieldError("passwordField", false);
     };
 
-    $("auth-form").onsubmit = async (e) => {
+    // ---- Password visibility ----
+    $("togglePassword").addEventListener("click", () => {
+      const input = $("password");
+      const isHidden = input.type === "password";
+      input.type = isHidden ? "text" : "password";
+      $("togglePassword").setAttribute("aria-pressed", String(isHidden));
+      $("togglePassword").setAttribute("aria-label", isHidden ? "Hide password" : "Show password");
+    });
+
+    // ---- Submit (login or signup) ----
+    $("auth-form").addEventListener("submit", async (e) => {
       e.preventDefault();
-      $("error").textContent = "";
+      clearFormError();
+
+      const email = $("email").value;
+      const password = $("password").value;
+      const name = $("name").value;
+
+      let valid = true;
+      if (!isValidEmail(email)) { setFieldError("emailField", true); valid = false; }
+      else setFieldError("emailField", false);
+
+      if (!password || password.length < 6) { setFieldError("passwordField", true); valid = false; }
+      else setFieldError("passwordField", false);
+
+      if (isSignup && !name.trim()) {
+        showFormError("Please enter your name.");
+        valid = false;
+      }
+
+      if (!valid) return;
+
+      const submitBtn = $("submit-btn");
+      submitBtn.disabled = true;
+      $("submitLabel").textContent = isSignup ? "Signing up…" : "Logging in…";
+
       try {
-        if (isSignup) await signUp($("name").value, $("email").value, $("password").value);
-        else await logIn($("email").value, $("password").value);
+        if (isSignup) {
+          await signUp(name.trim(), email, password);
+        } else {
+          await logIn(email, password);
+        }
         location.href = "dashboard.html";
       } catch (err) {
-        $("error").textContent = friendlyError(err);
+        console.error("[login] auth failed:", err);
+        showFormError(friendlyError(err));
+      } finally {
+        submitBtn.disabled = false;
+        $("submitLabel").textContent = isSignup ? "Sign up" : "Log in";
       }
-    };
+    });
 
-    $("google-btn").onclick = async () => {
+    // ---- Google sign-in ----
+    $("google-btn").addEventListener("click", async () => {
+      clearFormError();
+      const btn = $("google-btn");
+      btn.disabled = true;
+      $("googleLabel").textContent = "Connecting…";
+
       try {
         await googleSignIn();
         location.href = "dashboard.html";
       } catch (err) {
-        $("error").textContent = friendlyError(err);
+        console.error("[login] google sign-in failed:", err);
+        if (err.code !== "auth/popup-closed-by-user") {
+          showFormError(friendlyError(err));
+        }
+      } finally {
+        btn.disabled = false;
+        $("googleLabel").textContent = "Continue with Google";
       }
-    };
+    });
   </script>
 </body>
 </html>

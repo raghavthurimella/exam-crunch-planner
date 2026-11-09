@@ -3,7 +3,7 @@
 <head>
     <meta name="description" content="Exam Crunch Planner helps students organize and power through exam prep.">
   <meta name="theme-color" content="#5b8a9a">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=2">
   
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +14,7 @@
 <body>
   <div class="page">
     <div class="topbar">
-      <h1 class="brand">Exam Crunch Planner</h1>
+      <h1 class="dash-brand">Exam Crunch Planner</h1>
       <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme">🌙</button>
     </div>
 
@@ -22,6 +22,52 @@
       <h1 id="welcome">Loading…</h1>
       <button id="logout" class="btn btn-secondary">Log out</button>
     </div>
+
+    <div class="card">
+      <div class="card-header-row">
+        <h2>Your Exams</h2>
+        <button id="addExamBtn" class="btn btn-primary">+ Add Exam</button>
+      </div>
+
+      <p id="emptyState" class="empty-state">No exams added yet. Click "+ Add Exam" to get started.</p>
+
+      <div id="examList" class="exam-list"></div>
+    </div>
+
+    <div id="examModal" class="modal-overlay">
+      <div class="modal">
+        <h2 id="modalTitle">Add Exam</h2>
+        <form id="examForm">
+          <label for="subjectInput">Subject</label>
+          <input type="text" id="subjectInput" required maxlength="100" />
+
+          <label for="dateInput">Exam date</label>
+          <input type="date" id="dateInput" required />
+
+          <label for="confidenceInput">Confidence</label>
+          <select id="confidenceInput" required>
+            <option value="">Select...</option>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+
+          <label for="topicsInput">Topics (comma-separated)</label>
+          <input type="text" id="topicsInput" placeholder="e.g. Thermodynamics, Optics" />
+
+          <label for="allocatedDaysInput">Days to allocate for revision</label>
+          <input type="number" id="allocatedDaysInput" min="1" required />
+
+          <p id="formError" class="error-text"></p>
+
+          <div class="modal-actions">
+            <button type="button" id="cancelExamBtn" class="btn btn-secondary">Cancel</button>
+            <button type="submit" class="btn btn-primary">Save Exam</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
   </div>
 
   <script type="module">
@@ -40,6 +86,7 @@
 
   <!-- ADD THIS: -->
   <script type="module" src="js/exams.js"></script>
+  <script type="module" src="js/dashboard-ui.js"></script>
 
 </body>
 </html>
